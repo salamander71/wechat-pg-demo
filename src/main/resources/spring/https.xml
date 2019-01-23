@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <bean id="https" class="org.apache.camel.component.http4.HttpComponent">
+    <property name="connectionTimeToLive" value="60000"/>
+    <property name="maxTotalConnections" value="100"/>
+    <property name="socketTimeout" value="30000"/>
+    <property name="connectionRequestTimeout" value="3000"/>
+    <property name="connectionsPerRoute" value="100"/>
+    <property name="sslContextParameters" ref="sslContextParameters" />
+    <property name="x509HostnameVerifier" ref="allHostNameVerifier" />
+  </bean>
+
+  <bean id="sslContextParameters" class="org.apache.camel.util.jsse.SSLContextParameters">
+    <property name="keyManagers" ref="keyManagersParameters" />
+    <property name="trustManagers" ref="trustManagersParameters" />
+  </bean>
+
+  <bean id="keyManagersParameters" class="org.apache.camel.util.jsse.KeyManagersParameters">
+    <property name="keyStore" ref="keyStoreParameters" />
+  </bean>
+
+  <bean id="keyStoreParameters" class="org.apache.camel.util.jsse.KeyStoreParameters">
+    <property name="resource" value="${wechat-pg.ssl.key-store}" />
+  </bean>
+
+  <bean id="trustManagersParameters" class="org.apache.camel.util.jsse.TrustManagersParameters" >
+    <property name="trustManager" ref="dummyTrustManager" />
+  </bean>
+
+  <bean id="dummyTrustManager" class="org.apache.camel.component.mail.DummyTrustManager" />
+
+  <bean id="allHostNameVerifier" class="org.apache.http.conn.ssl.NoopHostnameVerifier"/>
+
+</beans>

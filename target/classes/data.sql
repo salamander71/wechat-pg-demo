@@ -1,0 +1,1 @@
+INSERT INTO `cats`.`user_info` (`name`) VALUES ( 'jcha');

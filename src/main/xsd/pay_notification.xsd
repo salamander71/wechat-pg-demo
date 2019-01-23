@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="payNotificationResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="xml">
+					<xs:complexType>
+						<xs:sequence>
+
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="return_code" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="return_msg" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="appid" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="mch_id" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="sub_appid" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="sub_mch_id" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="device_info" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="is_subscribe" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="nonce_str" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="sub_is_subscribe" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="sign" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="result_code" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="err_code" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="err_code_des" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="openid" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="sub_openid" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="trade_type" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="bank_type" />
+							<xs:element type="xs:int" minOccurs="1" maxOccurs="1" name="total_fee" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="fee_type" />
+							<xs:element type="xs:int" minOccurs="1" maxOccurs="1" name="cash_fee" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="cash_fee_type" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="settlement_total_fee" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_count" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_0" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_1" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_2" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_3" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_4" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_5" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_6" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_7" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_8" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_9" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_10" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_11" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_12" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_13" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_14" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_15" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_16" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_17" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_18" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_type_19" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_1" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_2" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_3" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_4" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_5" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_6" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_7" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_8" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_9" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_10" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_11" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_12" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_13" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_14" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_15" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_16" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_17" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_18" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_19" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="coupon_id_20" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_1" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_2" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_3" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_4" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_5" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_6" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_7" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_8" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_9" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_10" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_11" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_12" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_13" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_14" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_15" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_16" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_17" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_18" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_19" />
+							<xs:element type="xs:int" minOccurs="0" maxOccurs="1" name="coupon_fee_20" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="transaction_id" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="out_trade_no" />
+							<xs:element type="xs:string" minOccurs="0" maxOccurs="1" name="attach" />
+							<xs:element type="xs:string" minOccurs="1" maxOccurs="1" name="time_end" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

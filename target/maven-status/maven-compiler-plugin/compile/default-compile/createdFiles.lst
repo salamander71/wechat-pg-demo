@@ -1,0 +1,11 @@
+com\shb\service\PrepayIdService.class
+com\shb\infra\repository\RepositorySupport.class
+com\shb\model\PrepayIdResponse.class
+com\shb\model\ObjectFactory.class
+com\shb\model\PrepayIdResponse$Xml.class
+com\shb\service\RequestPrepayIdToWechatService.class
+com\shb\infra\repository\UserInfoRepository.class
+com\shb\model\PrepayIdRequest.class
+com\shb\model\PrepayIdRequest$Xml.class
+com\shb\Application.class
+com\shb\entity\UserInfo.class

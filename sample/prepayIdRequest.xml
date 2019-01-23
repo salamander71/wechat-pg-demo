@@ -1,0 +1,29 @@
+<xml>
+  <app_id>str1234</app_id>
+  <appid>str1234</appid>
+  <mch_id>str1234</mch_id>
+  <sub_appid>str1234</sub_appid>
+  <sub_mch_id>str1234</sub_mch_id>
+  <device_info>str1234</device_info>
+  <receipt>str1234</receipt>
+  <nonce_str>str1234</nonce_str>
+  <sign>str1234</sign>
+  <sign_type>str1234</sign_type>
+  <body>str1234</body>
+  <detail>str1234</detail>
+  <attach>str1234</attach>
+  <out_trade_no>str1234</out_trade_no>
+  <fee_type>str1234</fee_type>
+  <total_fee>123</total_fee>
+  <spbill_create_ip>str1234</spbill_create_ip>
+  <time_start>str1234</time_start>
+  <time_expire>str1234</time_expire>
+  <goods_tag>str1234</goods_tag>
+  <sbj_notify_url>str1234</sbj_notify_url>
+  <wechat_notify_url>str1234</wechat_notify_url>
+  <trade_type>str1234</trade_type>
+  <product_id>str1234</product_id>
+  <limit_pay>str1234</limit_pay>
+  <openid>str1234</openid>
+  <sub_openid>str1234</sub_openid>
+</xml>

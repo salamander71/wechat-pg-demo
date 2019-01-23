@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- 데이터 변환기 정의 -->
+    <dataFormats>
+      <jaxb id="jaxbMapper" contextPath="com.shb.model"/>
+      <json id="jsnoMapper" library="Gson" prettyPrint="true"/>
+    </dataFormats>
+
+    <route>
+      <from uri="direct:load"/>
+      <pollEnrich>
+        <simple>file://sample?fileName=prepayIdRequest.xml&amp;noop=true</simple>
+      </pollEnrich>
+      <setBody>
+        <simple>
+          <![CDATA[
+          <?xml version="1.0" encoding="UTF-8"?>
+          <prepayIdRequest>
+            ${body}
+          </prepayIdRequest>
+          ]]>
+        </simple>
+      </setBody>
+      <unmarshal ref="jaxbMapper"/>
+      <log message="${body}"/>
+      <marshal ref="jaxbMapper"/>
+      <log message="${body}"/>
+      <setBody>
+        <xpath>prepayIdRequest/xml</xpath>
+      </setBody>
+      <log message="xpath:\n${body}"/>
+    </route>
+  </camelContext>
+</beans>

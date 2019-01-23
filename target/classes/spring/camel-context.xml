@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <import resource="amq.xml"/>
+  <import resource="mybatis.xml"/>
+  <import resource="https.xml"/>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- 데이터 변환기 정의 -->
+    <dataFormats>
+      <jaxb id="jaxbMapper" contextPath="com.shb.model"/>
+      <json id="jsnoMapper" library="Gson" prettyPrint="true"/>
+      <json id="jsonPrepayIdRequest" library="Gson" prettyPrint="true"
+            moduleClassNames="com.shb.model.PrepayIdRequest"/>
+      <json id="jsonPrepayIdResponse" library="Gson" prettyPrint="true"
+            moduleClassNames="com.shb.model.PrepayIdResponse"/>
+    </dataFormats>
+
+    <!-- Rest API 정의 -->
+    <restConfiguration bindingMode="xml" component="servlet" enableCORS="true"/>
+    <rest path="/reqPrepayId">
+      <post type="com.shb.model.PrepayIdRequest" outType="com.shb.model.PrepayIdResponse">
+        <to uri="direct:prepayId"/>
+      </post>
+    </rest>
+
+    <route id="reqPrepayIdServlet">
+      <from uri="servlet:reqPrepayIdServlet?httpMethodRestrict=POST" />
+      <setBody>
+        <simple>
+          <![CDATA[
+          <?xml version="1.0" encoding="UTF-8"?>
+          <prepayIdRequest>
+            ${body}
+          </prepayIdRequest>
+          ]]>
+        </simple>
+      </setBody>
+      <unmarshal ref="jaxbMapper" />
+      <to uri="direct:prepayId"/>
+      <setBody>
+        <xpath>prepayIdResponse/xml</xpath>
+      </setBody>
+
+    </route>
+    <!-- Rest Java Service 라우트 -->
+    <route id="PrepayIdRoute">
+      <from uri="direct:prepayId"/>
+      <wireTap uri="amq:WECHAT.PG"/>
+      <wireTap uri="amq:WECHAT.AUDIT"/>
+      <bean ref="prepayIdService"/>
+    </route>
+
+    <!-- 내부 Biz Service -->
+    <route id="requestPrepayIdToWechatServiceRoute">
+      <from uri="amq:WECHAT.PG"/>
+      <!-- Wechat 호출 분기 예시 -->
+      <wireTap uri="direct:wechatRequestPrepayId"/>
+      <!-- Core 인터페이스 MSA 메시지 전송 예시 -->
+      <marshal ref="jsonPrepayIdRequest"/>
+    </route>
+
+    <route id="responsePrepayIdFromWechatServiceRoute">
+      <from uri="direct:RequestPrepayIdToWechat"/>
+      <bean ref="requestPrepayIdToWechatService"/>
+      <marshal ref="jsnoMapper"/>
+      <log message="${body}"/>
+      <to uri="amq:CORE.IF"/>
+      <to uri="amq:CORE.AUDIT"/>
+    </route>
+
+    <route id="requestPrepayIdToWechatRoute">
+      <from uri="direct:wechatRequestPrepayId"/>
+      <marshal ref="jaxbMapper"/>
+      <log message="${body}"/>
+      <setHeader headerName="Conent-Type">
+        <constant>application/xml</constant>
+      </setHeader>
+      <to uri="{{wechat-pg.wechat.url}}/fuse/reqPrepayId?bridgeEndpoint=true"/>
+      <unmarshal ref="jaxbMapper"/>
+      <log message="${body}"/>
+      <marshal ref="jsonPrepayIdResponse"/>
+      <log message="${body}"/>
+    </route>
+
+    <!-- 코어 AMQ 수신 라우트 -->
+    <route id="coreIfRoute">
+      <from uri="amq:CORE.IF"/>
+      <log message="CORE IF MSA:\n${body}"/>
+    </route>
+
+    <!-- myBatis 사용 예 -->
+    <route id="myBatisRoute">
+      <from uri="timer://beats?period=10s"/>
+      <bean ref="userInfoRepository" method="readAnyUser"/>
+      <marshal ref="jsnoMapper" />
+      <log message="UserInfo : ${body}" />
+    </route>
+  </camelContext>
+</beans>
